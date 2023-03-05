@@ -1,0 +1,10 @@
+com\jestebandev\ProductService\dto\ProductRequest.class
+com\jestebandev\ProductService\dto\Response.class
+com\jestebandev\ProductService\ProductServiceApplication.class
+com\jestebandev\ProductService\service\IProductService.class
+com\jestebandev\ProductService\service\ProductService.class
+com\jestebandev\ProductService\model\Product$ProductBuilder.class
+com\jestebandev\ProductService\controller\ProductController.class
+com\jestebandev\ProductService\dto\ProductResponse.class
+com\jestebandev\ProductService\model\Product.class
+com\jestebandev\ProductService\repository\ProductRepository.class
