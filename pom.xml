@@ -17,6 +17,7 @@
         <module>ProductService</module>
         <module>OrderService</module>
         <module>InventoryService</module>
+        <module>DiscoveryServer</module>
     </modules>
 
     <properties>
