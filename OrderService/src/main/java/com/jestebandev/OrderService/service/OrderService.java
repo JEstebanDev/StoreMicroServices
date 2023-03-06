@@ -21,7 +21,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class OrderService {
     private final OrderRepository orderRepository;
-    private final WebClient webClient;
+    private final WebClient.Builder webClientBuilder;
 
     public OrderResponse placeOrder(OrderRequest orderRequest) {
         Order order = new Order();
@@ -52,7 +52,7 @@ public class OrderService {
 
     private Response getDataWebClient(List<ItemOrder> itemOrderList) {
         List<String> skuCodeList = itemOrderList.stream().map(ItemOrder::getSkuCode).toList();
-        return webClient.get().uri("http://localhost:8082/api/inventory",
+        return webClientBuilder.build().get().uri("http://inventory-service/api/inventory",
                         uriBuilder -> uriBuilder.queryParam("skuCode", skuCodeList).build())
                 .retrieve().bodyToMono(Response.class).block();
     }
