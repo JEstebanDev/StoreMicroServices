@@ -42,7 +42,7 @@ public class OrderService {
         //transform the json to object with the gson library
         Gson gson = new Gson();
         Inventory inventory = gson.fromJson(responseInventory.data().toString(), Inventory.class);
-        List<InventoryResponse> listInventory = inventory.inventory();
+        List<InventoryResponse> listInventory = inventory.getInventory();
 
         if (listInventory.size() == itemOrderList.size()) {
             return listInventory.stream().allMatch(InventoryResponse::isInStock);
