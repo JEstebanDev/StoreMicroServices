@@ -9,16 +9,19 @@
         <module name="DiscoveryServer" />
         <module name="OrderService" />
         <module name="ProductService" />
+        <module name="ApiGateway" />
         <module name="InventoryService" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ApiGateway" options="-parameters" />
       <module name="DiscoveryServer" options="-parameters" />
       <module name="InventoryService" options="-parameters" />
       <module name="OrderService" options="-parameters" />
       <module name="ProductService" options="-parameters" />
+      <module name="StoreMicroService" options="" />
     </option>
   </component>
 </project>
