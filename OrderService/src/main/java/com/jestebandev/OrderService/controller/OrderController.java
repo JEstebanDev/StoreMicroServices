@@ -2,7 +2,6 @@ package com.jestebandev.OrderService.controller;
 
 import com.jestebandev.OrderService.dto.OrderRequest;
 import com.jestebandev.OrderService.dto.Response;
-import com.jestebandev.OrderService.error.CustomErrorException;
 import com.jestebandev.OrderService.service.OrderService;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
