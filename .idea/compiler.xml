@@ -21,6 +21,7 @@
       <module name="InventoryService" options="-parameters" />
       <module name="OrderService" options="-parameters" />
       <module name="ProductService" options="-parameters" />
+      <module name="StoreMicroService" options="" />
     </option>
   </component>
 </project>

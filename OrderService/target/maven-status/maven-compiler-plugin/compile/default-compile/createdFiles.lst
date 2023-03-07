@@ -2,10 +2,16 @@ com\jestebandev\OrderService\dto\OrderRequest.class
 com\jestebandev\OrderService\controller\OrderController.class
 com\jestebandev\OrderService\dto\OrderResponse.class
 com\jestebandev\OrderService\model\Order.class
+com\jestebandev\OrderService\dto\InventoryResponse.class
 com\jestebandev\OrderService\dto\Response.class
 com\jestebandev\OrderService\model\ItemOrder.class
 com\jestebandev\OrderService\service\IOrderService.class
+com\jestebandev\OrderService\error\CustomErrorException.class
 com\jestebandev\OrderService\OrderServiceApplication.class
+com\jestebandev\OrderService\dto\Inventory.class
+com\jestebandev\OrderService\controller\CustomExceptionHandler.class
 com\jestebandev\OrderService\repository\OrderRepository.class
 com\jestebandev\OrderService\service\OrderService.class
 com\jestebandev\OrderService\dto\ItemOrderDto.class
+com\jestebandev\OrderService\config\WebClientConfig.class
+com\jestebandev\OrderService\controller\CustomExceptionHandler$CustomErrorResponse.class
