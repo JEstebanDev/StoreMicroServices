@@ -1,8 +1,0 @@
-com\jestebandev\InventoryService\repository\InventoryRepository.class
-com\jestebandev\InventoryService\controller\InventoryController.class
-com\jestebandev\InventoryService\service\InventoryService.class
-com\jestebandev\InventoryService\model\Inventory.class
-com\jestebandev\InventoryService\dto\InventoryResponse.class
-com\jestebandev\InventoryService\dto\Response.class
-com\jestebandev\InventoryService\service\IInventoryService.class
-com\jestebandev\InventoryService\InventoryServiceApplication.class
