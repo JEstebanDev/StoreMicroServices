@@ -6,6 +6,9 @@ import com.jestebandev.OrderService.error.CustomErrorException;
 import com.jestebandev.OrderService.model.Order;
 import com.jestebandev.OrderService.model.ItemOrder;
 import com.jestebandev.OrderService.repository.OrderRepository;
+import io.jaegertracing.internal.JaegerTracer;
+import io.opentracing.Span;
+import io.opentracing.Tracer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -22,7 +25,6 @@ import java.util.UUID;
 public class OrderService {
     private final OrderRepository orderRepository;
     private final WebClient.Builder webClientBuilder;
-
     public OrderResponse placeOrder(OrderRequest orderRequest) {
         Order order = new Order();
         order.setOrderNumber(UUID.randomUUID().toString());

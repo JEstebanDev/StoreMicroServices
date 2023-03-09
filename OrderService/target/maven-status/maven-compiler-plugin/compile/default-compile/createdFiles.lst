@@ -6,6 +6,7 @@ com\jestebandev\OrderService\dto\InventoryResponse.class
 com\jestebandev\OrderService\dto\Response.class
 com\jestebandev\OrderService\model\ItemOrder.class
 com\jestebandev\OrderService\service\IOrderService.class
+com\jestebandev\OrderService\dto\InventoryResponse$InventoryResponseBuilder.class
 com\jestebandev\OrderService\error\CustomErrorException.class
 com\jestebandev\OrderService\OrderServiceApplication.class
 com\jestebandev\OrderService\dto\Inventory.class

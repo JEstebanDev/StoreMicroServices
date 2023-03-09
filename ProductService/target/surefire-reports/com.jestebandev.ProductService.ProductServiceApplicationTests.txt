@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.jestebandev.ProductService.ProductServiceApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.431 s - in com.jestebandev.ProductService.ProductServiceApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.174 s - in com.jestebandev.ProductService.ProductServiceApplicationTests
