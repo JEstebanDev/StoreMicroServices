@@ -3,11 +3,13 @@ package com.jestebandev.OrderService.service;
 import com.google.gson.Gson;
 import com.jestebandev.OrderService.dto.*;
 import com.jestebandev.OrderService.error.CustomErrorException;
+import com.jestebandev.OrderService.event.OrderPlacedEvent;
 import com.jestebandev.OrderService.model.Order;
 import com.jestebandev.OrderService.model.ItemOrder;
 import com.jestebandev.OrderService.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -22,6 +24,7 @@ import java.util.UUID;
 public class OrderService {
     private final OrderRepository orderRepository;
     private final WebClient.Builder webClientBuilder;
+    private final KafkaTemplate<String,OrderPlacedEvent> kafkaTemplate;
     public OrderResponse placeOrder(OrderRequest orderRequest) {
         Order order = new Order();
         order.setOrderNumber(UUID.randomUUID().toString());
@@ -31,6 +34,8 @@ public class OrderService {
         boolean isInventoryValid = checkInventory(order.getItemOrderList());
         if (isInventoryValid) {
             orderRepository.save(order);
+            //kafka message
+            kafkaTemplate.send("NotificationTopic",new OrderPlacedEvent(order.getOrderNumber()));
             return new OrderResponse(order.getOrderNumber(), orderRequest.ItemOrderDto());
         }
         throw new CustomErrorException("ERR-001", "Something went wrong with the inventory validation check the products");
