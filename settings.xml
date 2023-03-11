@@ -7,8 +7,8 @@
     <servers>
         <server>
             <id>registry.hub.docker.com</id>
-            <username>jestebancdev</username>
-            <password>dock99Je!0</password>
+            <username>${dockerusername}</username>
+            <password>${dockerpassword}</password>
         </server>
     </servers>
     <mirrors/>
