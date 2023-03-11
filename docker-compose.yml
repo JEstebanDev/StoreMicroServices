@@ -13,10 +13,10 @@ services:
     volumes:
       - ./postgres-order:/data/postgres
     expose:
-      - "5431"
+      - "5433"
     ports:
-      - "5431:5431"
-    command: -p 5431
+      - "5433:5433"
+    command: -p 5433
     restart: always
 
   mysql-inventory:
@@ -26,10 +26,13 @@ services:
       MYSQL_DATABASE: inventory-service
       MYSQL_USER: jestebandev
       MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ALLOW_EMPTY_PASSWORD: false
+      MYSQL_RANDOM_ROOT_PASSWORD: password
     volumes:
       - ./mysql-inventory:/data/mysql
     ports:
-      - "5432:5432"
+      - "3306:3306"
     restart: always
 
   ## Mongo Docker Compose Config
@@ -105,7 +108,13 @@ services:
     image: jaegertracing/all-in-one:1.42
     container_name: jaeger
     ports:
-     - "9411:9411"
+      - "5775:5775/udp"
+      - "6831:6831/udp"
+      - "6832:6832/udp"
+      - "5778:5778"
+      - "16686:16686"
+      - "14268:14268"
+      - "9411:9411"
 
   ## Eureka Server
   discovery-server:
@@ -115,6 +124,10 @@ services:
       - "8761:8761"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - JAEGER_SERVICE_NAME=discovery-server
+      - JAEGER_AGENT_HOST=jaeger
+      - JAEGER_AGENT_PORT=6831
+      - JAEGER_SAMPLER_MANAGER_HOST_PORT=jaeger:5778
     depends_on:
       - jaeger
 
@@ -128,6 +141,10 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY= TRACE
+      - JAEGER_SERVICE_NAME=api-gateway
+      - JAEGER_AGENT_HOST=jaeger
+      - JAEGER_AGENT_PORT=6831
+      - JAEGER_SAMPLER_MANAGER_HOST_PORT=jaeger:5778
     depends_on:
       - jaeger
       - discovery-server
@@ -139,6 +156,10 @@ services:
     image: jestebancdev/product-service:latest
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - JAEGER_SERVICE_NAME=product-service
+      - JAEGER_AGENT_HOST=jaeger
+      - JAEGER_AGENT_PORT=6831
+      - JAEGER_SAMPLER_MANAGER_HOST_PORT=jaeger:5778
     depends_on:
       - mongo
       - discovery-server
@@ -150,7 +171,11 @@ services:
     image: jestebancdev/order-service:latest
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-order:5431/order-service
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-order:5433/order-service
+      - JAEGER_SERVICE_NAME=order-service
+      - JAEGER_AGENT_HOST=jaeger
+      - JAEGER_AGENT_PORT=6831
+      - JAEGER_SAMPLER_MANAGER_HOST_PORT=jaeger:5778
     depends_on:
       - postgres-order
       - broker
@@ -164,7 +189,11 @@ services:
     image: jestebancdev/inventory-service:latest
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-inventory:5432/inventory-service
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-inventory:3306/inventory-service
+      - JAEGER_SERVICE_NAME=inventory-service
+      - JAEGER_AGENT_HOST=jaeger
+      - JAEGER_AGENT_PORT=6831
+      - JAEGER_SAMPLER_MANAGER_HOST_PORT=jaeger:5778
     depends_on:
       - mysql-inventory
       - discovery-server
@@ -176,13 +205,17 @@ services:
     image: jestebancdev/notification-service:latest
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - JAEGER_SERVICE_NAME=inventory-service
+      - JAEGER_AGENT_HOST=jaeger
+      - JAEGER_AGENT_PORT=6831
+      - JAEGER_SAMPLER_MANAGER_HOST_PORT=jaeger:5778
     depends_on:
       - jaeger
       - broker
       - discovery-server
       - api-gateway
 
-  ## Prometheus
+## Prometheus
   prometheus:
     image: prom/prometheus:v2.37.1
     container_name: prometheus
