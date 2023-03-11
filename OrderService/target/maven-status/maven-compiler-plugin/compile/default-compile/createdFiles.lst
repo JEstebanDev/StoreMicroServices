@@ -4,6 +4,7 @@ com\jestebandev\OrderService\dto\OrderResponse.class
 com\jestebandev\OrderService\model\Order.class
 com\jestebandev\OrderService\dto\InventoryResponse.class
 com\jestebandev\OrderService\dto\Response.class
+com\jestebandev\OrderService\event\OrderPlacedEvent.class
 com\jestebandev\OrderService\model\ItemOrder.class
 com\jestebandev\OrderService\service\IOrderService.class
 com\jestebandev\OrderService\dto\InventoryResponse$InventoryResponseBuilder.class

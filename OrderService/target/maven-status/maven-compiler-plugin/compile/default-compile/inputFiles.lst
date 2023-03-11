@@ -3,6 +3,7 @@ G:\Documents\Files\Spring\StoreMicroService\OrderService\src\main\java\com\jeste
 G:\Documents\Files\Spring\StoreMicroService\OrderService\src\main\java\com\jestebandev\OrderService\repository\OrderRepository.java
 G:\Documents\Files\Spring\StoreMicroService\OrderService\src\main\java\com\jestebandev\OrderService\service\IOrderService.java
 G:\Documents\Files\Spring\StoreMicroService\OrderService\src\main\java\com\jestebandev\OrderService\dto\OrderRequest.java
+G:\Documents\Files\Spring\StoreMicroService\OrderService\src\main\java\com\jestebandev\OrderService\event\OrderPlacedEvent.java
 G:\Documents\Files\Spring\StoreMicroService\OrderService\src\main\java\com\jestebandev\OrderService\config\WebClientConfig.java
 G:\Documents\Files\Spring\StoreMicroService\OrderService\src\main\java\com\jestebandev\OrderService\model\Order.java
 G:\Documents\Files\Spring\StoreMicroService\OrderService\src\main\java\com\jestebandev\OrderService\dto\Response.java

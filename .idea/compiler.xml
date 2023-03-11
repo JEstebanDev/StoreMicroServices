@@ -6,24 +6,24 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="DiscoveryServer" />
-        <module name="NotificationService" />
-        <module name="OrderService" />
-        <module name="ProductService" />
-        <module name="ApiGateway" />
-        <module name="InventoryService" />
+        <module name="api-gateway" />
+        <module name="product-service" />
+        <module name="discovery-server" />
+        <module name="inventory-service" />
+        <module name="order-service" />
+        <module name="notification-service" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="ApiGateway" options="-parameters" />
-      <module name="DiscoveryServer" options="-parameters" />
-      <module name="InventoryService" options="-parameters" />
-      <module name="NotificationService" options="-parameters" />
-      <module name="OrderService" options="-parameters" />
-      <module name="ProductService" options="-parameters" />
       <module name="StoreMicroService" options="" />
+      <module name="api-gateway" options="-parameters" />
+      <module name="discovery-server" options="-parameters" />
+      <module name="inventory-service" options="-parameters" />
+      <module name="notification-service" options="-parameters" />
+      <module name="order-service" options="-parameters" />
+      <module name="product-service" options="-parameters" />
     </option>
   </component>
 </project>
