@@ -124,10 +124,6 @@ services:
       - "8761:8761"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-      - JAEGER_SERVICE_NAME=discovery-server
-      - JAEGER_AGENT_HOST=jaeger
-      - JAEGER_AGENT_PORT=6831
-      - JAEGER_SAMPLER_MANAGER_HOST_PORT=jaeger:5778
     depends_on:
       - jaeger
 
@@ -141,10 +137,6 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY= TRACE
-      - JAEGER_SERVICE_NAME=api-gateway
-      - JAEGER_AGENT_HOST=jaeger
-      - JAEGER_AGENT_PORT=6831
-      - JAEGER_SAMPLER_MANAGER_HOST_PORT=jaeger:5778
     depends_on:
       - jaeger
       - discovery-server
@@ -156,10 +148,6 @@ services:
     image: jestebancdev/product-service:latest
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-      - JAEGER_SERVICE_NAME=product-service
-      - JAEGER_AGENT_HOST=jaeger
-      - JAEGER_AGENT_PORT=6831
-      - JAEGER_SAMPLER_MANAGER_HOST_PORT=jaeger:5778
     depends_on:
       - mongo
       - discovery-server
@@ -172,10 +160,6 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-order:5433/order-service
-      - JAEGER_SERVICE_NAME=order-service
-      - JAEGER_AGENT_HOST=jaeger
-      - JAEGER_AGENT_PORT=6831
-      - JAEGER_SAMPLER_MANAGER_HOST_PORT=jaeger:5778
     depends_on:
       - postgres-order
       - broker
@@ -190,10 +174,6 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-inventory:3306/inventory-service
-      - JAEGER_SERVICE_NAME=inventory-service
-      - JAEGER_AGENT_HOST=jaeger
-      - JAEGER_AGENT_PORT=6831
-      - JAEGER_SAMPLER_MANAGER_HOST_PORT=jaeger:5778
     depends_on:
       - mysql-inventory
       - discovery-server
@@ -205,17 +185,13 @@ services:
     image: jestebancdev/notification-service:latest
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-      - JAEGER_SERVICE_NAME=inventory-service
-      - JAEGER_AGENT_HOST=jaeger
-      - JAEGER_AGENT_PORT=6831
-      - JAEGER_SAMPLER_MANAGER_HOST_PORT=jaeger:5778
     depends_on:
       - jaeger
       - broker
       - discovery-server
       - api-gateway
 
-## Prometheus
+  ## Prometheus
   prometheus:
     image: prom/prometheus:v2.37.1
     container_name: prometheus
