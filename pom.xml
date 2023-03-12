@@ -14,11 +14,11 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
+        <module>DiscoveryServer</module>
+        <module>ApiGateway</module>
         <module>ProductService</module>
         <module>OrderService</module>
         <module>InventoryService</module>
-        <module>DiscoveryServer</module>
-        <module>ApiGateway</module>
         <module>NotificationService</module>
     </modules>
 
@@ -68,6 +68,17 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.2.1</version>
+                <configuration>
+                    <from>
+                        <image>eclipse-temurin:17.0.4.1_1-jre</image>
+                    </from>
+                    <to><image>registry.hub.docker.com/jestebancdev/${artifactId}</image></to>
                 </configuration>
             </plugin>
         </plugins>
